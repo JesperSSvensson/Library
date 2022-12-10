@@ -5,7 +5,7 @@ internal class Program
     private static void Main(string[] args)
     {
         DBConnections con = new DBConnections();
-        CustomerConnect db = new();
+        LoginConnect db = new();
         Library library = new();
 
 
@@ -36,7 +36,7 @@ internal class Program
 
                     if (menuKey == ConsoleKey.D1)
                     {
-
+                        
                     }
                     else if (menuKey == ConsoleKey.D2)
                     {
@@ -44,7 +44,7 @@ internal class Program
                     }
                     else if (menuKey == ConsoleKey.D3)
                     {
-
+                        library.GetAllBooks();
                     }
                     else if (menuKey == ConsoleKey.D4)
                     {

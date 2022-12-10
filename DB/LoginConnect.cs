@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 
-public class CustomerConnect
+public class LoginConnect
 {
     DBConnections db = new();
    
@@ -21,6 +21,6 @@ public class CustomerConnect
             }
         }
 
-
+    
 
 }
