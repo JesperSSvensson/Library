@@ -2,7 +2,7 @@ using Dapper;
 using MySqlConnector;
 public class DBConnections
 {
-    private string connectionstring = "Server=localhost;Database=library;Uid=libraryAdmin;pwd=;";
+    private string connectionstring = "Server=localhost;Database=libraryDB;Uid=libraryAdmin;pwd=;";
     public MySqlConnection? connection;
     public DBConnections()
     {
@@ -14,4 +14,6 @@ public class DBConnections
         connection = new MySqlConnection(connectionstring);
     }
 
+
+   
 }
