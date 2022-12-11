@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 
-public class borrowedBooks
+public class BorrowedBooks
 {
     public DateTime date_of_loan;
     public DateTime date_of_return;
@@ -9,7 +9,7 @@ public class borrowedBooks
     public int customer_id;
 
 
-    public borrowedBooks()
+    public BorrowedBooks()
     {
         
     }

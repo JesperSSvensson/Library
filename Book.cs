@@ -18,8 +18,8 @@ public class Book
 
     public override string ToString()
     {
-        Console.Clear();
-        return "\nID: " + ID + " Name: " + Title + " Published: " + Published + " Prize: " + Price + ", Stock: " + Stock + " Category " + Category;
+        
+        return "\nID: " + ID + " |Name: " + Title + " |Published: " + Published + " |Prize: " + Price + ", |Stock: " + Stock + " |Category: " + Category;
     }
 
 }

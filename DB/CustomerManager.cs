@@ -5,7 +5,7 @@ public class CustomerManager
 
     Customer? newCustomer; 
     DBConnections DB = new();
-    LibraryManager lm = new();
+    LibraryManager libraryManager = new();
     public Customer? activeUser {get; set;}
     public Customer? loggedInUser { get; set; }
 
@@ -31,7 +31,7 @@ public class CustomerManager
         try
         {
             Customer customer;
-            if (lm.GetCustomerById(Int32.Parse(_id), out customer))
+            if (libraryManager.GetCustomerById(Int32.Parse(_id), out customer))
             {
                 activeUser = customer;
                 return true;
@@ -50,7 +50,7 @@ public class CustomerManager
         {
             try
             {
-                if(lm.CheckPinForCustomer(activeUser.ID, Pin))
+                if(libraryManager.CheckPinForCustomer(activeUser.ID, Pin))
                 {
                     loggedInUser = activeUser;
                     return true;
