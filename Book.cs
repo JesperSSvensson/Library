@@ -5,11 +5,10 @@ public class Book
 {
     public int ID {get; set;}
     public string Title {get; set;}
-    public string published  {get; set;}
-    public int stock {get; set;}
+    public string Published  {get; set;}
+    public int Stock {get; set;}
     public int Price {get; set;}
-    public string category {get; set;}
-    public Author first_name {get; set;}
+    public string Category {get; set;}
     
 
     public Book()
@@ -17,6 +16,9 @@ public class Book
         
     }
 
-    
+    public override string ToString()
+        {
+            return "\nID: " + ID + ", Name: " + Title + ", Published: " + Published + ", Prize: " + Price + ", Stock: " + Stock +  "Category" + Category;
+        }
 
 }
