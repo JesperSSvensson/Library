@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z1vR142JRfVTI0mcLeusV1YfKSbAaX5L4P3zhASf7CXetjRjzOW8m2Yirq8XMO0LeOvbv/9EDBjjuu48KABeBA==",
+  "dgSpecHash": "hB682meX+uq/cnAnp1T69DVQ1SlBgxcAvxH3jfNqunbXgovoT7PvTR3HvaoUdw0FK6QXUh2gT01pDhOySwt0Yg==",
   "success": true,
-  "projectFilePath": "c:\\Suvnet22\\Inlämning\\Library\\Library.csproj",
+  "projectFilePath": "c:\\Suvnet22\\Inlämning\\Library\\UI\\Library.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jespe\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\jespe\\.nuget\\packages\\mysqlconnector\\2.2.1\\mysqlconnector.2.2.1.nupkg.sha512"

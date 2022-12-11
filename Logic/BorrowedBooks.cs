@@ -5,7 +5,6 @@ public class BorrowedBooks
 {
     public int ID;
     public DateTime date_of_loan;
-    
     public int book_id;
     public int customer_id;
     
