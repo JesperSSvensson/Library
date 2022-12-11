@@ -35,13 +35,8 @@ public class LibraryManager
             }
         }
 
-        public void loading()
-        {
-            for (int i = 0; i < 1; i++)
-            {
-                Console.WriteLine("Loading" + i);   
-            }
-        }
+      
+        
 
     
 
