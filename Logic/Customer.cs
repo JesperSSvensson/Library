@@ -13,4 +13,9 @@ public class Customer
     {
 
     }
+     public override string ToString()
+    {
+        
+        return "\nID: " + ID + " |Name: " + Name + " |UserName: " + user_name;
+    }
 }

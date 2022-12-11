@@ -12,10 +12,5 @@ public class DBConnections
     public void SqlConnect()
     {
         connection = new MySqlConnection(connectionstring);
-    }
-
-    
-
-
-   
+    }   
 }
