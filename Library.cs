@@ -6,8 +6,6 @@ public class Library
 {
     DBConnections db = new();
     LibraryManager libraryManager = new();
-
-
     public Library()
     {
 
@@ -153,8 +151,7 @@ public class Library
             if (libraryManager.GetAllCustomers(out customer)) // out betyder att du inte behöver skapa en ny variabel i metoden som anropas. Vi skickar med denna variablen till andra metoden. Alla förändringar som görs på variabeln i den andra klassen kommer även följa med. 
             {
                 foreach (Customer c in customer)
-                {
-                    Console.WriteLine("All Books");
+                {;
                     Console.WriteLine(c.ToString());
                 }
 
@@ -165,7 +162,7 @@ public class Library
         }
         catch (System.Exception)
         {
-            Console.WriteLine("Library: No books found in library");
+            Console.WriteLine("Library: No customers found in library");
             return false;
         }
     }

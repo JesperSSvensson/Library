@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Suvnet22\\Inlämning\\Library\\Library.csproj": {}
+    "C:\\Suvnet22\\Inlämning\\Library\\Library.csproj": {}
   },
   "projects": {
-    "c:\\Suvnet22\\Inlämning\\Library\\Library.csproj": {
+    "C:\\Suvnet22\\Inlämning\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Suvnet22\\Inlämning\\Library\\Library.csproj",
+        "projectUniqueName": "C:\\Suvnet22\\Inlämning\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "c:\\Suvnet22\\Inlämning\\Library\\Library.csproj",
+        "projectPath": "C:\\Suvnet22\\Inlämning\\Library\\Library.csproj",
         "packagesPath": "C:\\Users\\jespe\\.nuget\\packages\\",
-        "outputPath": "c:\\Suvnet22\\Inlämning\\Library\\obj\\",
+        "outputPath": "C:\\Suvnet22\\Inlämning\\Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jespe\\AppData\\Roaming\\NuGet\\NuGet.Config"
