@@ -101,7 +101,7 @@ internal class Program
                         }
                     }else if (menuKey == ConsoleKey.D5)
                     {
-                     library.ShowTotalBook();
+                     library.GetSumOfBooks();
                     }
                     else
                     {

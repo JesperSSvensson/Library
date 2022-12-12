@@ -220,7 +220,7 @@ public class Library
         }
     }
 
-    public bool ShowTotalBook()
+    public bool GetSumOfBooks()
     {
         try
         {
@@ -228,11 +228,12 @@ public class Library
             if (libraryManager.ShowBookStock(out books))
             {
                 {
-                    Console.WriteLine("Total Numbers of Books: " + books);
+                    Console.Clear();
+                    Font.PrintText("Total Numbers of Books In Library: " + books);
+                    Console.ReadKey();
                 }
                 return true;
             }
-
             return false;
         }
         catch (System.Exception)
