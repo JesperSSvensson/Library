@@ -88,89 +88,96 @@ public class LibraryManager
             }
         }
 
-        public bool GetBorrowedBooksForCustomer(int _customer_id, out IEnumerable<BorrowedBooks> borrowed_books)
+        public bool GetBorrowedBooksForCustomer(int customerId, out IEnumerable<BorrowedBooks> borrowed_books)
         {
+            Console.Clear();
             try
             {
-                borrowed_books = db.connection.Query<BorrowedBooks>("SELECT * FROM borrowed_book b WHERE b.customer_id='" + _customer_id + "'");
+                borrowed_books = db.connection.Query<BorrowedBooks>("SELECT * FROM borrowed_book b WHERE b.customer_id='" + customerId + "'");
                 return true;
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("LibraryManager: Cannot get borrowed books for customer_id: " + _customer_id + " : " + ex.Message);
+                Console.WriteLine("LibraryManager: Cannot get borrowed books for customer_id: " + customerId + " : " + ex.Message);
                 borrowed_books = null;
                 return false;
             }
         }
-         public bool GetBookIdFromLoanId(int _loan_id, out int book_id)
+         public bool GetBookIdFromLoanId(int loanId, out int book_id)
         {
+            Console.Clear();
             try
             {
-                book_id = db.connection.QueryFirst<int>("SELECT book_id FROM borrowed_book WHERE ID=" + _loan_id);
+                book_id = db.connection.QueryFirst<int>("SELECT book_id FROM borrowed_book WHERE ID=" + loanId);
                 return true;
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("LibraryManager: Cannot get book_id from loan_id " + _loan_id + " : " + ex.Message);
+                Console.WriteLine("LibraryManager: Cannot get book_id from loan_id " + loanId + " : " + ex.Message);
                 book_id = 0;
                 return false;
             }
         }
-        public bool DeleteBorrowedBook(int _loan_id)
+        public bool DeleteBorrowedBook(int loanId)
         {
+            Console.Clear();
             try
             {
-                var res = db.connection.Query("DELETE FROM borrowed_book WHERE ID=" + _loan_id);
+                var res = db.connection.Query("DELETE FROM borrowed_book WHERE ID=" + loanId);
                 return true;
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("LibraryManager: Cannot delete borrowed book from load_id " + _loan_id + " : " + ex.Message);
+                Console.WriteLine("LibraryManager: Cannot delete borrowed book from load_id " + loanId + " : " + ex.Message);
                 return false;
             }
         }
-        public bool GetBookStock(int _book_id, out int stock)
+        public bool GetBookStock(int bookId, out int stock)
         {
+            Console.Clear();
             try
             {
-                stock = db.connection.QuerySingle<int>("SELECT stock FROM book WHERE ID=" + _book_id);
+                stock = db.connection.QuerySingle<int>("SELECT stock FROM book WHERE ID=" + bookId);
                 return true;
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("LibraryManager: Cannot get stock for book with ID: " + _book_id + " : " + ex.Message);
+                Console.WriteLine("LibraryManager: Cannot get stock for book with ID: " + bookId + " : " + ex.Message);
                 stock = 0;
                 return false;
             }
         }
-        public bool SetBookStock(int _stock, int _book_id)
+        public bool SetBookStock(int stock, int bookId)
         {
+            Console.Clear();
             try
             {
-                var res = db.connection.Query("UPDATE book SET stock=" + _stock + " WHERE ID=" + _book_id);
+                var res = db.connection.Query("UPDATE book SET stock=" + stock + " WHERE ID=" + bookId);
                 return true;
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("LibraryManager: Cannot set stock for book with ID: " + _book_id + " : " + ex.Message);
+                Console.WriteLine("LibraryManager: Cannot set stock for book with ID: " + bookId + " : " + ex.Message);
                 return false;
             }
         }
-        public bool RegisterBorrowedBook(int _book_id, int _customer_id)
+        public bool RegisterBorrowedBook(int bookId, int customerId)
         {
+            Console.Clear();
             try
             {
-                var res = db.connection.Query("INSERT INTO borrowed_book (book_id, customer_id, date_of_loan) VALUES (" + _book_id + ", " + _customer_id + ", '" + DateTime.Now + "')");
+                var res = db.connection.Query("INSERT INTO borrowed_book (book_id, customer_id, date_of_loan) VALUES (" + bookId + ", " + customerId + ", '" + DateTime.Now + "')");
                 return true;
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("LibraryManager: Cannot register borrowed book with with Book_ID " + _book_id + " and Customer_ID " + _customer_id + " : " + ex.Message);
+                Console.WriteLine("LibraryManager: Cannot register borrowed book with with Book_ID " + bookId + " and Customer_ID " + customerId + " : " + ex.Message);
                 return false;
             }
         }
         public bool GetAllCustomers(out IEnumerable<Customer> customer)
         {
+            Console.Clear();
             try
             {
                 customer = db.connection.Query<Customer>("SELECT * FROM customer");
@@ -185,6 +192,7 @@ public class LibraryManager
         }
         public bool GetAllBorrowedBooks(out IEnumerable<BorrowedBooks> borrowedBooks)
         {
+            Console.Clear();
             try
             {
                 borrowedBooks = db.connection.Query<BorrowedBooks>("SELECT * FROM Borrowed_book");

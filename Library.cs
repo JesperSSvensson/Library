@@ -17,9 +17,9 @@ public class Library
             IEnumerable<Book> books;
             if (libraryManager.GetAllBooks(out books)) // out betyder att du inte behöver skapa en ny variabel i metoden som anropas. Vi skickar med denna variablen till andra metoden. Alla förändringar som görs på variabeln i den andra klassen kommer även följa med. 
             {
+                Font.PrintHeader("All Books");
                 foreach (Book b in books)
                 {
-                    Console.WriteLine("All Books");
                     Console.WriteLine(b.ToString());
                 }
 
@@ -60,19 +60,19 @@ public class Library
             return false;
         }
     }
-    public bool BorrowBook(int _book_ID, int _customer_ID)
+    public bool BorrowBook(int bookId, int customerId)
     {
         try
         {
             int currentStock;
-            if (libraryManager.GetBookStock(_book_ID, out currentStock))
+            if (libraryManager.GetBookStock(bookId, out currentStock))
             {
                 if (currentStock > 0)
                 {
                     int newStock = currentStock - 1;
-                    if (libraryManager.SetBookStock(newStock, _book_ID))
+                    if (libraryManager.SetBookStock(newStock, bookId))
                     {
-                        if (libraryManager.RegisterBorrowedBook(_book_ID, _customer_ID))
+                        if (libraryManager.RegisterBorrowedBook(bookId, customerId))
                         {
                             return true;
                         }
@@ -80,7 +80,8 @@ public class Library
                 }
                 else
                 {
-                    Console.WriteLine("Book out of stock");
+                    Font.PrintErrorHeader("Book out of stock");
+                    Console.ReadLine();
                 }
             }
 

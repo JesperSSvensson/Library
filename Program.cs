@@ -45,7 +45,7 @@ internal class Program
                         {
                             if (bookToBorrow == 0)
                             {
-
+                                
                             }
                             else
                             {
@@ -123,7 +123,7 @@ internal class Program
                     }
                     else if (menuKey == ConsoleKey.D3)
                     {
-
+                        
                     }
                     else if (menuKey == ConsoleKey.D4)
                     {
