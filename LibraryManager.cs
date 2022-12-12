@@ -74,7 +74,7 @@ public class LibraryManager
         }
         public bool GetAllBooksTitleWithAuthors(out IEnumerable<dynamic> books)
         {
-            Console.Clear();
+            
             try
             {
                 books = db.connection.Query("SELECT b.title, a.first_name, a.last_name FROM book b INNER JOIN author a ON b.author_id=a.ID");
@@ -90,7 +90,6 @@ public class LibraryManager
 
         public bool GetBorrowedBooksForCustomer(int customerId, out IEnumerable<BorrowedBooks> borrowed_books)
         {
-            Console.Clear();
             try
             {
                 borrowed_books = db.connection.Query<BorrowedBooks>("SELECT * FROM borrowed_book b WHERE b.customer_id='" + customerId + "'");
@@ -104,8 +103,7 @@ public class LibraryManager
             }
         }
          public bool GetBookIdFromLoanId(int loanId, out int book_id)
-        {
-            Console.Clear();
+        { 
             try
             {
                 book_id = db.connection.QueryFirst<int>("SELECT book_id FROM borrowed_book WHERE ID=" + loanId);
@@ -120,7 +118,6 @@ public class LibraryManager
         }
         public bool DeleteBorrowedBook(int loanId)
         {
-            Console.Clear();
             try
             {
                 var res = db.connection.Query("DELETE FROM borrowed_book WHERE ID=" + loanId);
@@ -134,7 +131,6 @@ public class LibraryManager
         }
         public bool GetBookStock(int bookId, out int stock)
         {
-            Console.Clear();
             try
             {
                 stock = db.connection.QuerySingle<int>("SELECT stock FROM book WHERE ID=" + bookId);
@@ -149,7 +145,6 @@ public class LibraryManager
         }
         public bool SetBookStock(int stock, int bookId)
         {
-            Console.Clear();
             try
             {
                 var res = db.connection.Query("UPDATE book SET stock=" + stock + " WHERE ID=" + bookId);
@@ -163,7 +158,6 @@ public class LibraryManager
         }
         public bool RegisterBorrowedBook(int bookId, int customerId)
         {
-            Console.Clear();
             try
             {
                 var res = db.connection.Query("INSERT INTO borrowed_book (book_id, customer_id, date_of_loan) VALUES (" + bookId + ", " + customerId + ", '" + DateTime.Now + "')");
@@ -177,7 +171,6 @@ public class LibraryManager
         }
         public bool GetAllCustomers(out IEnumerable<Customer> customer)
         {
-            Console.Clear();
             try
             {
                 customer = db.connection.Query<Customer>("SELECT * FROM customer");
@@ -192,7 +185,6 @@ public class LibraryManager
         }
         public bool GetAllBorrowedBooks(out IEnumerable<BorrowedBooks> borrowedBooks)
         {
-            Console.Clear();
             try
             {
                 borrowedBooks = db.connection.Query<BorrowedBooks>("SELECT * FROM Borrowed_book");
@@ -205,4 +197,46 @@ public class LibraryManager
                 return false;
             }
         }
+        public bool GetBookByTitle(string title, out IEnumerable<Book> books)
+        {
+            try
+            {
+                books = db.connection.Query<Book>("SELECT * FROM book b WHERE b.title='" + title + "'");
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Font.PrintErrorHeader("DataBaseAccess: Cannot get any books with title: " + title + " : " + ex.Message);
+                books = null;
+                return false;
+            }
+        }
+        public bool ShowBookStock(out IEnumerable<Book> books)
+        {
+            try
+            {
+                books = db.connection.Query<Book>("SELECT SUM(stock) FROM book;");
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Font.PrintErrorHeader("LibraryManager: Cannot get any books : " + ex.Message);
+                books = null;
+                return false;
+            }
+        }
+        // public bool ShowBookStock(int bookId, out int stock)
+        // {
+        //     try
+        //     {
+        //         stock = db.connection.QuerySingle<int>("SELECT SUM(stock) FROM book WHERE ID=" + bookId);
+        //         return true;
+        //     }
+        //     catch (System.Exception ex)
+        //     {
+        //         Console.WriteLine("LibraryManager: Cannot get stock for book with ID: " + bookId + " : " + ex.Message);
+        //         stock = 0;
+        //         return false;
+        //     }
+        // }
 }

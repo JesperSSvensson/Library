@@ -3,11 +3,8 @@ using MySqlConnector;
 
 public static class Font
 {
-
-
     private static void ProgressBarPaint(int progress, int total, string _label)
     {
-
         //Draw empty progress bar
         Console.CursorLeft = 0;
         Console.Write("["); //start
@@ -89,8 +86,4 @@ public static class Font
         Console.BackgroundColor = ConsoleColor.Black;
         Console.Write("\n");
     }
-
-
-
-
 }

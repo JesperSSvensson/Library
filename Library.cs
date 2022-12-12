@@ -46,7 +46,7 @@ public class Library
                 foreach (dynamic b in books)
                 {
                     Console.WriteLine("Book title: " + b.title + ", Author: " + b.first_name + " " + b.last_name);
-                    
+
                 }
                 Console.ReadKey();
                 return true;
@@ -146,7 +146,7 @@ public class Library
         }
     }
 
-    public bool ShowAllCustomers()
+    public bool ShowAllCustomers() // visar alla kunder
     {
         try
         {
@@ -169,7 +169,7 @@ public class Library
             return false;
         }
     }
-    public bool ShowAllBorrowedBooks()
+    public bool ShowAllBorrowedBooks() // visar alla lånade böcker
     {
         try
         {
@@ -194,4 +194,52 @@ public class Library
             return false;
         }
     }
+    public bool FindBooksByTitle(string title)
+    {
+        try
+        {
+            IEnumerable<Book> books;
+            if (libraryManager.GetBookByTitle(title, out books))
+            {
+                Font.PrintHeader("Found Books");
+                foreach (Book b in books)
+                {
+                    Console.WriteLine(b.ToString());
+                }
+                return true;
+            }
+
+            return false;
+        }
+        catch (System.Exception)
+        {
+            Font.PrintErrorHeader("Library: No books found");
+            return false;
+        }
+    }
+
+    public bool ShowTotalBook()
+    {
+        try
+        {
+            IEnumerable<Book> books;
+            if (libraryManager.ShowBookStock(out books))
+            {
+                Font.PrintHeader("All books");
+                foreach (Book c in books)
+                {
+                    Console.WriteLine(c.Stock);
+                }
+                return true;
+            }
+
+            return false;
+        }
+        catch (System.Exception)
+        {
+            Console.WriteLine("Library: No Books found in library");
+            return false;
+        }
+    }
+    
 }

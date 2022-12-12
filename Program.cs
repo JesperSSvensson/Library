@@ -9,7 +9,7 @@ internal class Program
         CustomerManager customerManager = new();
         AdminManager adminManager = new();
         Library library = new();
-        
+        Customer customer = new();
 
         bool loginMenu = true;
         while (loginMenu == true)
@@ -27,13 +27,18 @@ internal class Program
                 if (customerManager.PinEntered(Console.ReadLine()))
                 {
                     Console.WriteLine("CORRECT PIN");
-                    Font.ProgressBar(5, "Loading");
-                    Thread.Sleep(400);
+                    Font.ProgressBar(3, "Loading");
+                }
+                else
+                {
+                    Font.PrintErrorHeader("Wrong PIN");
+                    Console.ReadLine();
+                    continue;
                 }
                 bool customerMenu = true;
                 while (customerMenu == true)
-                {   Console.Clear();
-                    Console.WriteLine($"Welcome To Habo Library {customerManager.activeUser.Name} \n[1]Show All Books\n[2]Show All Books with Authors\n[3]Search For A Book");
+                {
+                    Console.WriteLine($"Welcome To Habo Library| Logged: {customerManager.activeUser.Name} \n[1] - Show All Books - Borrow a book\n[2] - Show All Books with Authors\n[3] - Your borrowed books\n[4] - Search For Book\n[5] - Information about Library");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
                     if (menuKey == ConsoleKey.D1)
@@ -45,18 +50,17 @@ internal class Program
                         {
                             if (bookToBorrow == 0)
                             {
-                                
+
                             }
                             else
                             {
                                 library.BorrowBook(bookToBorrow, customerManager.loggedInUser.ID);
-
                             }
                         }
                     }
                     else if (menuKey == ConsoleKey.D2)
                     {
-                        library.ShowAllBooksWithAuthors();
+                        library.ShowAllBooksWithAuthors(); 
                     }
                     else if (menuKey == ConsoleKey.D3)
                     {
@@ -72,21 +76,39 @@ internal class Program
                         }
                         else
                         {
-                            Console.WriteLine("Wrong User Input");
+                            Font.PrintErrorHeader("Wrong User Input");
                         }
-
                     }
                     else if (menuKey == ConsoleKey.D4)
                     {
+                        Console.WriteLine("Please enter title of book: ");
 
+                        string title = Console.ReadLine();
+                        if (library.FindBooksByTitle(title))
+                        {
+                            Console.WriteLine("Do You want to borrow this book? (Enter ID, or 0 for Exit)");
+                            int bookToBorrow = 0;
+                            if (Int32.TryParse(Console.ReadLine(), out bookToBorrow))
+                            {
+                                if (bookToBorrow == 0)
+                                {
+                                    Font.PrintErrorHeader("No book in stock");
+                                }
+                                else
+                                {
+                                    library.BorrowBook(bookToBorrow, customerManager.loggedInUser.ID);
+                                }
+                            }
+                        }
+                    }else if (menuKey == ConsoleKey.D5)
+                    {
+                     library.ShowTotalBook();
                     }
-
-
                     else
                     {
-                        Console.WriteLine("Your library card was not found in the system");
+                        Font.PrintErrorHeader("Invalid input");
+                        continue;
                     }
-
                 }
             }
             else if (choiceKey == ConsoleKey.D2)
@@ -104,12 +126,14 @@ internal class Program
                 }
                 else
                 {
-                    Console.WriteLine("Your library card was not found in the system");
+                    Font.PrintErrorHeader("Wrong PIN");
+                    Console.ReadLine();
+                    continue;
                 }
                 bool customerMenu = true;
                 while (customerMenu == true)
                 {
-                    
+
                     Console.WriteLine($"Welcome To Habo Library {adminManager.activeAdmin.admin_user_name} \n[1]Show All Customers\n[2]Show All Borrowed Books\n[3]Show All Books");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
@@ -123,11 +147,10 @@ internal class Program
                     }
                     else if (menuKey == ConsoleKey.D3)
                     {
-                        
                     }
                     else if (menuKey == ConsoleKey.D4)
                     {
-
+                        Environment.Exit(0);
                     }
                 }
             }
