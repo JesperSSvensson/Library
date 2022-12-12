@@ -5,11 +5,10 @@ internal class Program
     private static void Main(string[] args)
     {
         DBConnections con = new DBConnections();
-        LibraryManager libraryManager = new();
         CustomerManager customerManager = new();
         AdminManager adminManager = new();
         Library library = new();
-        Customer customer = new();
+       
 
         bool loginMenu = true;
         while (loginMenu == true)
@@ -37,20 +36,20 @@ internal class Program
                 }
                 bool customerMenu = true;
                 while (customerMenu == true)
-                {
-                    Console.WriteLine($"Welcome To Habo Library| Logged: {customerManager.activeUser.Name} \n[1] - Show All Books - Borrow a book\n[2] - Show All Books with Authors\n[3] - Your borrowed books\n[4] - Search For Book\n[5] - Information about Library");
+                {   
+                    Console.WriteLine($"Welcome To Habo Library| Customer: {customerManager.activeUser.Name} \n[1] - Show All Books - Borrow a book\n[2] - Show All Books with Authors\n[3] - Your borrowed books\n[4] - Search For Book\n[5] - Information about Library");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
                     if (menuKey == ConsoleKey.D1)
                     {
                         library.ShowAllBooks();
-                        Console.Write("Do You want to borrow any book? (Enter ID, or 0 for Exit): ");
+                        Font.PrintText("Do you want to borrow any book? | Enter BookID for borrow, or press enter for Exit |): ");
                         int bookToBorrow;
                         if (Int32.TryParse(Console.ReadLine(), out bookToBorrow))
                         {
                             if (bookToBorrow == 0)
                             {
-
+                               
                             }
                             else
                             {
@@ -133,8 +132,8 @@ internal class Program
                 bool customerMenu = true;
                 while (customerMenu == true)
                 {
-
-                    Console.WriteLine($"Welcome To Habo Library {adminManager.activeAdmin.admin_user_name} \n[1]Show All Customers\n[2]Show All Borrowed Books\n[3]Show All Books");
+                   
+                    Console.WriteLine($"Welcome To Habo Library Admin: {adminManager.activeAdmin.admin_user_name} \n[1]Show All Customers\n[2]Show All Borrowed Books\n[3]Show All Books");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
                     if (menuKey == ConsoleKey.D1)

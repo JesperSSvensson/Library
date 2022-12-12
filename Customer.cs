@@ -5,7 +5,7 @@ public class Customer
 {
     public int ID {get; set;}
     public string? Name {get; set;}
-    public string? userName {get; set;}
+    public string? user_Name {get; set;}
     public int Password {get; set;}
     LibraryManager libraryManager = new();
     public Customer? activeUser { get; set; }
@@ -18,7 +18,7 @@ public class Customer
      public override string ToString()
     {
         
-        return "\nID: " + ID + " |Name: " + Name + " |UserName: " + userName;
+        return "\nID: " + ID + " |Name: " + Name + " |UserName: " + user_Name;
     }
     // public bool LibraryCardInserted(string _id)
     // {

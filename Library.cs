@@ -153,6 +153,7 @@ public class Library
             IEnumerable<Customer> customer;
             if (libraryManager.GetAllCustomers(out customer)) // out betyder att du inte behöver skapa en ny variabel i metoden som anropas. Vi skickar med denna variablen till andra metoden. Alla förändringar som görs på variabeln i den andra klassen kommer även följa med. 
             {
+                Font.PrintHeader("All customers");
                 foreach (Customer c in customer)
                 {
                     Console.WriteLine(c.ToString());
@@ -176,6 +177,7 @@ public class Library
             IEnumerable<BorrowedBooks> borrowedBooks;
             if (libraryManager.GetAllBorrowedBooks(out borrowedBooks)) // out betyder att du inte behöver skapa en ny variabel i metoden som anropas. Vi skickar med denna variablen till andra metoden. Alla förändringar som görs på variabeln i den andra klassen kommer även följa med. 
             {
+                Font.PrintHeader("All borrowed books");
                 foreach (BorrowedBooks bB in borrowedBooks)
                 {
                     Console.WriteLine("All Books");
@@ -222,13 +224,11 @@ public class Library
     {
         try
         {
-            IEnumerable<Book> books;
+            int books;
             if (libraryManager.ShowBookStock(out books))
             {
-                Font.PrintHeader("All books");
-                foreach (Book c in books)
                 {
-                    Console.WriteLine(c.Stock);
+                    Console.WriteLine("Total Numbers of Books: " + books);
                 }
                 return true;
             }
@@ -241,5 +241,4 @@ public class Library
             return false;
         }
     }
-    
 }
