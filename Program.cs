@@ -9,6 +9,7 @@ internal class Program
         CustomerManager customerManager = new();
         AdminManager adminManager = new();
         Library library = new();
+        
 
         bool loginMenu = true;
         while (loginMenu == true)
@@ -26,12 +27,12 @@ internal class Program
                 if (customerManager.PinEntered(Console.ReadLine()))
                 {
                     Console.WriteLine("CORRECT PIN");
-                    Console.WriteLine("Please Wait loading");
-                    Thread.Sleep(200);
+                    Font.ProgressBar(5, "Loading");
+                    Thread.Sleep(400);
                 }
                 bool customerMenu = true;
                 while (customerMenu == true)
-                {
+                {   Console.Clear();
                     Console.WriteLine($"Welcome To Habo Library {customerManager.activeUser.Name} \n[1]Show All Books\n[2]Show All Books with Authors\n[3]Search For A Book");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
@@ -69,7 +70,7 @@ internal class Program
                                 Console.WriteLine("Book Returned");
                             }
                         }
-                        else 
+                        else
                         {
                             Console.WriteLine("Wrong User Input");
                         }
@@ -98,7 +99,7 @@ internal class Program
                 if (adminManager.PinEntered(Console.ReadLine()))
                 {
                     Console.WriteLine("CORRECT PIN");
-                    Console.WriteLine("Please Wait loading");
+                    Font.ProgressBar(5, "Loading");
                     Thread.Sleep(200);
                 }
                 else
@@ -108,6 +109,7 @@ internal class Program
                 bool customerMenu = true;
                 while (customerMenu == true)
                 {
+                    
                     Console.WriteLine($"Welcome To Habo Library {adminManager.activeAdmin.admin_user_name} \n[1]Show All Customers\n[2]Show All Borrowed Books\n[3]Show All Books");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
@@ -121,7 +123,7 @@ internal class Program
                     }
                     else if (menuKey == ConsoleKey.D3)
                     {
-                        
+
                     }
                     else if (menuKey == ConsoleKey.D4)
                     {

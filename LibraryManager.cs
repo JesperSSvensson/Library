@@ -74,6 +74,7 @@ public class LibraryManager
         }
         public bool GetAllBooksTitleWithAuthors(out IEnumerable<dynamic> books)
         {
+            Console.Clear();
             try
             {
                 books = db.connection.Query("SELECT b.title, a.first_name, a.last_name FROM book b INNER JOIN author a ON b.author_id=a.ID");

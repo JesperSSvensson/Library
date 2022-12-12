@@ -46,7 +46,9 @@ public class Library
                 foreach (dynamic b in books)
                 {
                     Console.WriteLine("Book title: " + b.title + ", Author: " + b.first_name + " " + b.last_name);
+                    
                 }
+                Console.ReadKey();
                 return true;
             }
 
@@ -136,7 +138,7 @@ public class Library
 
             return false;
         }
-        catch (System.Exception ex)
+        catch (System.Exception)
         {
             Console.WriteLine("Library: Unable to return book");
             return false;
@@ -151,10 +153,10 @@ public class Library
             if (libraryManager.GetAllCustomers(out customer)) // out betyder att du inte behöver skapa en ny variabel i metoden som anropas. Vi skickar med denna variablen till andra metoden. Alla förändringar som görs på variabeln i den andra klassen kommer även följa med. 
             {
                 foreach (Customer c in customer)
-                {;
+                {
                     Console.WriteLine(c.ToString());
                 }
-
+                Console.ReadKey();
                 return true;
             }
 
@@ -178,6 +180,7 @@ public class Library
                     Console.WriteLine("All Books");
                     Console.WriteLine(bB.ToString());
                 }
+                Console.ReadKey();
 
                 return true;
             }
