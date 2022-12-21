@@ -88,18 +88,19 @@ public static class Font
     }
     public static void PrintText(string _topic)
     {
-        int lines = 10;
+        int lines = 1;
         int length = _topic.Length;
         Console.BackgroundColor = ConsoleColor.DarkGray;
 
         for (int i = 0; i < lines; i++)
-        Console.Write('-');
+        Console.Write("\n|");
         Console.Write(" " + _topic + " ");
 
         for (int i = 0; i < (lines - length); i++)
-            Console.Write('-');
+            Console.Write('|');
 
         Console.BackgroundColor = ConsoleColor.Black;
         Console.Write("\n");
     }
+
 }

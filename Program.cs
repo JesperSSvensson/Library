@@ -36,7 +36,7 @@ internal class Program
                 }
                 bool customerMenu = true;
                 while (customerMenu == true)
-                {   
+                {   Console.Clear();
                     Console.WriteLine($"Welcome To Habo Library| Customer: {customerManager.activeUser.Name} \n[1] - Show All Books - Borrow a book\n[2] - Show All Books with Authors\n[3] - Your borrowed books\n[4] - Search For Book\n[5] - Information about Library");
                     ConsoleKey menuKey = Console.ReadKey().Key;
 
@@ -63,7 +63,7 @@ internal class Program
                     }
                     else if (menuKey == ConsoleKey.D3)
                     {
-                        library.ListBorrowedBooks(customerManager.loggedInUser.ID);
+                        library.ListBorrowedBookss(customerManager.loggedInUser.ID);
                         Console.WriteLine("Write Loan ID to return");
                         int loanId = 0;
                         if (Int32.TryParse(Console.ReadLine(), out loanId))
@@ -71,17 +71,19 @@ internal class Program
                             if (library.ReturnBook(loanId))
                             {
                                 Console.WriteLine("Book Returned");
+                                Console.ReadLine();
                             }
                         }
                         else
                         {
                             Font.PrintErrorHeader("Wrong User Input");
+                            Console.ReadLine();
                         }
+                        
                     }
                     else if (menuKey == ConsoleKey.D4)
                     {
                         Console.WriteLine("Please enter title of book: ");
-
                         string title = Console.ReadLine();
                         if (library.FindBooksByTitle(title))
                         {
@@ -92,6 +94,7 @@ internal class Program
                                 if (bookToBorrow == 0)
                                 {
                                     Font.PrintErrorHeader("No book in stock");
+                                    Console.ReadLine();
                                 }
                                 else
                                 {
@@ -106,6 +109,7 @@ internal class Program
                     else
                     {
                         Font.PrintErrorHeader("Invalid input");
+                        Console.ReadLine();
                         continue;
                     }
                 }

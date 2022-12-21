@@ -7,12 +7,12 @@ public class CustomerManager
     public Customer? activeUser { get; set; }
     public Customer? loggedInUser { get; set; }
 
-    public bool LibraryCardInserted(string _id)
+    public bool LibraryCardInserted(string id)
     {
         try
         {
             Customer customer;
-            if (libraryManager.GetCustomerById(Int32.Parse(_id), out customer))
+            if (libraryManager.GetCustomerById(Int32.Parse(id), out customer))
             {
                 activeUser = customer;
                 return true;
