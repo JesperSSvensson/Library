@@ -14,3 +14,15 @@ C:\Suvnet22\Inlämning\Library\obj\Debug\net6.0\ref\Library.dll
 C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\Dapper.dll
 C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\MySqlConnector.dll
 C:\Suvnet22\Inlämning\Library\obj\Debug\net6.0\Library.csproj.CopyComplete
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\DnsClient.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\SharpCompress.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\Snappier.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\ZstdSharp.dll
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Suvnet22\Inlämning\Library\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll

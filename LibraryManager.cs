@@ -74,7 +74,6 @@ public class LibraryManager
     }
     public bool GetAllBooksTitleWithAuthors(out IEnumerable<dynamic> books)
     {
-
         try
         {
             books = db.connection.Query("SELECT b.title, a.first_name, a.last_name FROM book b INNER JOIN author a ON b.author_id=a.ID");
@@ -102,17 +101,17 @@ public class LibraryManager
             return false;
         }
     }
-    public bool GetBookIdFromLoanId(int loanId, out int book_id)
+    public bool GetBookIdFromLoanId(int loanId, out int bookId)
     {
         try
         {
-            book_id = db.connection.QueryFirst<int>("SELECT book_id FROM borrowed_book WHERE ID=" + loanId);
+            bookId = db.connection.QueryFirst<int>("SELECT book_id FROM borrowed_book WHERE ID=" + loanId);
             return true;
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine("LibraryManager: Cannot get book_id from loan_id " + loanId + " : " + ex.Message);
-            book_id = 0;
+            Console.WriteLine("LibraryManager: Cannot get book_id from loan id " + loanId + " : " + ex.Message);
+            bookId = 0;
             return false;
         }
     }
@@ -125,7 +124,7 @@ public class LibraryManager
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine("LibraryManager: Cannot delete borrowed book from load_id " + loanId + " : " + ex.Message);
+            Console.WriteLine("LibraryManager: Cannot delete borrowed book from loan id " + loanId + " : " + ex.Message);
             return false;
         }
     }
@@ -198,18 +197,18 @@ public class LibraryManager
         }
     }
     public bool GetBookByTitle(string title, out IEnumerable<Book> books)
-    {
-        try
-        {
-            books = db.connection.Query<Book>("SELECT * FROM book b WHERE b.title='" + title + "'");
-            return true;
-        }
-        catch (System.Exception ex)
-        {
-            Font.PrintErrorHeader("DataBaseAccess: Cannot get any books with title: " + title + " : " + ex.Message);
-            books = null;
-            return false;
-        }
+    {  
+            try
+            {
+                books = db.connection.Query<Book>("SELECT * FROM book b WHERE b.title='" + title + "'");
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Font.PrintErrorHeader("LibraryManager: Cannot get any books with title: " + title + " : " + ex.Message);
+                books = null;
+                return false;
+            }
     }
     public bool ShowBookStock(out int books)
     {
@@ -225,19 +224,19 @@ public class LibraryManager
             return false;
         }
     }
-     public bool GetBorrowedBooksForCustomers(int customerId, out IEnumerable<dynamic> borrowedBooks)
+    public bool GetBorrowedBooksForCustomers(int customerId, out IEnumerable<dynamic> borrowedBooks)
     {
         try
         {
-            borrowedBooks = db.connection.Query("SELECT bb.ID, bb.date_of_loan, b.Title FROM borrowed_book bb INNER JOIN book b on bb.book_id =b.ID;");
+            borrowedBooks = db.connection.Query($"SELECT bb.ID, bb.date_of_loan, b.Title FROM borrowed_book bb INNER JOIN book b on bb.book_id =b.ID WHERE bb.customer_id = {customerId};");
             return true;
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine("LibraryManager: Cannot get borrowed books for customer_id: " + customerId + " : " + ex.Message);
+            Console.WriteLine("LibraryManager: Cannot get borrowed books for customerId: " + customerId + " : " + ex.Message);
             borrowedBooks = null;
             return false;
         }
     }
 }
-            
+

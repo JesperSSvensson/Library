@@ -45,7 +45,7 @@ public class Library
                 Console.WriteLine("All Books With Authors");
                 foreach (dynamic b in books)
                 {
-                    Console.WriteLine("Book title: " + b.title + ", Author: " + b.first_name + " " + b.last_name);
+                    Console.WriteLine("Book Title | " + b.title + " | Author | " + b.first_name + " " + b.last_name + "\n");
 
                 }
                 Console.ReadKey();
@@ -197,7 +197,6 @@ public class Library
     }
     public bool FindBooksByTitle(string title)
     {   
-    
         try
         {
             IEnumerable<Book> books;
@@ -206,6 +205,10 @@ public class Library
                 foreach (Book b in books)
                 {
                     Console.WriteLine(b.ToString());
+                }
+                if (books?.Any() == false)
+                {
+                    return false;
                 }
                 return true;
             }
@@ -252,8 +255,7 @@ public class Library
                 Console.WriteLine("Borrowed Books");
                 foreach (dynamic b in borrowed_bookss)
                 {
-                    // Console.WriteLine("Book ID: " + b.ID + " Date: " + b.date_of_loan);
-                    Console.WriteLine("\nTitle: " + b.Title + " Book ID: " + b.ID + " Date: " + b.dateOfLoan + "\n");
+                    Console.WriteLine("\nTitle: " + b.Title + " | Loan ID: " + b.ID + " | Date: " + b.date_of_loan + "\n");
                 }
                 return true;
             }
