@@ -93,15 +93,15 @@ public class Library
             return false;
         }
     }
-    public bool ListBorrowedBooks(int _customer_ID)
+    public bool ListBorrowedBooks(int customerId)
     {
         try
         {
-            IEnumerable<BorrowedBooks> borrowed_books;
-            if (libraryManager.GetBorrowedBooksForCustomer(_customer_ID, out borrowed_books))
+            IEnumerable<BorrowedBooks> borrowedBooks;
+            if (libraryManager.GetBorrowedBooksForCustomer(customerId, out borrowedBooks))
             {
                 Console.WriteLine("Borrowed Books");
-                foreach (BorrowedBooks b in borrowed_books)
+                foreach (BorrowedBooks b in borrowedBooks)
                 {
                     Console.WriteLine(b.ToString());
                 }
@@ -117,19 +117,19 @@ public class Library
         }
 
     }
-    public bool ReturnBook(int _loan_ID)
+    public bool ReturnBook(int loanId)
     {
         try
         {
-            int currentStock, newStock, book_id;
-            if (libraryManager.GetBookIdFromLoanId(_loan_ID, out book_id))
+            int currentStock, newStock, bookId;
+            if (libraryManager.GetBookIdFromLoanId(loanId, out bookId))
             {
-                if (libraryManager.DeleteBorrowedBook(_loan_ID))
+                if (libraryManager.DeleteBorrowedBook(loanId))
                 {
-                    if (libraryManager.GetBookStock(book_id, out currentStock))
+                    if (libraryManager.GetBookStock(bookId, out currentStock))
                     {
                         newStock = currentStock + 1;
-                        if (libraryManager.SetBookStock(newStock, book_id))
+                        if (libraryManager.SetBookStock(newStock, bookId))
                         {
                             return true;
                         }
@@ -179,7 +179,6 @@ public class Library
                 Font.PrintHeader("All borrowed books");
                 foreach (BorrowedBooks bB in borrowedBooks)
                 {
-                    Console.WriteLine("All Books");
                     Console.WriteLine(bB.ToString());
                 }
                 Console.ReadKey();
@@ -245,15 +244,15 @@ public class Library
         }
     }
     
-    public bool ListBorrowedBookss(int _customer_ID)
+    public bool ListBorrowedBooksForCustomer(int customerId)
     {
         try
         {
-            IEnumerable<dynamic> borrowed_bookss;
-            if (libraryManager.GetBorrowedBooksForCustomers(_customer_ID, out borrowed_bookss))
+            IEnumerable<dynamic> borrowedBookss;
+            if (libraryManager.GetBorrowedBooksForCustomers(customerId, out borrowedBookss))
             {   
                 Console.WriteLine("Borrowed Books");
-                foreach (dynamic b in borrowed_bookss)
+                foreach (dynamic b in borrowedBookss)
                 {
                     Console.WriteLine("\nTitle: " + b.Title + " | Loan ID: " + b.ID + " | Date: " + b.date_of_loan + "\n");
                 }

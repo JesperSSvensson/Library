@@ -54,8 +54,8 @@ internal class Program
                             }
                             else if (menuKey == ConsoleKey.D3)
                             {
-                                library.ListBorrowedBookss(customerManager.loggedInUser.ID);
-                                Console.WriteLine("Write Loan ID to return or press enter to return");
+                                library.ListBorrowedBooksForCustomer(customerManager.loggedInUser.ID);
+                                Font.PrintText("Write Loan ID to return or press enter to return");
                                 int loanId = 0;
                                 if (Int32.TryParse(Console.ReadLine(), out loanId))
                                 {
@@ -72,11 +72,11 @@ internal class Program
                             }
                             else if (menuKey == ConsoleKey.D4)
                             {
-                                Console.WriteLine("Please enter title of book: ");
+                                Font.PrintText("Please enter title of book: ");
                                 string title = Console.ReadLine();
                                 if (library.FindBooksByTitle(title))
                                 {
-                                    Console.WriteLine("Do You want to borrow this book? (Enter ID, or 0 for Exit)");
+                                    Console.WriteLine("Do You want to borrow this book? (Enter ID, or press enter for Exit)");
                                     int bookToBorrow = 0;
                                     if (Int32.TryParse(Console.ReadLine(), out bookToBorrow))
                                     {
