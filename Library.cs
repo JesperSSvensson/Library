@@ -22,10 +22,8 @@ public class Library
                 {
                     Console.WriteLine(b.ToString());
                 }
-
                 return true;
             }
-
             return false;
         }
         catch (System.Exception)
@@ -34,24 +32,21 @@ public class Library
             return false;
         }
     }
-
-    public bool ShowAllBooksWithAuthors()
+ public bool ShowAllBooksWithAuthors()
     {
         try
         {
             IEnumerable<dynamic> books;
             if (libraryManager.GetAllBooksTitleWithAuthors(out books))
             {
-                Console.WriteLine("All Books With Authors");
+                Font.PrintText("All Books With Authors");
                 foreach (dynamic b in books)
                 {
-                    Console.WriteLine("Book Title | " + b.title + " | Author | " + b.first_name + " " + b.last_name + "\n");
-
+                    Console.WriteLine("Book Title: " + b.title + " | Author: " + b.first_name + " " + b.last_name + "\n");
                 }
                 Console.ReadKey();
                 return true;
             }
-
             return false;
         }
         catch (System.Exception)
@@ -115,7 +110,6 @@ public class Library
             Console.WriteLine("Library: No borrowed books found for customer");
             return false;
         }
-
     }
     public bool ReturnBook(int loanId)
     {
@@ -190,12 +184,12 @@ public class Library
         }
         catch (System.Exception)
         {
-            Console.WriteLine("Library: No Borrowed books found in library");
+            Font.PrintErrorHeader("Library: No Borrowed books found in library");
             return false;
         }
     }
     public bool FindBooksByTitle(string title)
-    {   
+    {
         try
         {
             IEnumerable<Book> books;
@@ -218,9 +212,8 @@ public class Library
         {
             Font.PrintErrorHeader("Library: No books found");
         }
-            return false;
+        return false;
     }
-
     public bool GetSumOfBooks()
     {
         try
@@ -243,22 +236,20 @@ public class Library
             return false;
         }
     }
-    
     public bool ListBorrowedBooksForCustomer(int customerId)
     {
         try
         {
             IEnumerable<dynamic> borrowedBookss;
             if (libraryManager.GetBorrowedBooksForCustomers(customerId, out borrowedBookss))
-            {   
-                Console.WriteLine("Borrowed Books");
+            {
+                Font.PrintText("Borrowed Books");
                 foreach (dynamic b in borrowedBookss)
                 {
                     Console.WriteLine("\nTitle: " + b.Title + " | Loan ID: " + b.ID + " | Date: " + b.date_of_loan + "\n");
                 }
                 return true;
             }
-
             return false;
         }
         catch (System.Exception)
@@ -266,6 +257,5 @@ public class Library
             Console.WriteLine("Library: No borrowed books found for customer");
             return false;
         }
-
     }
-}
+}    

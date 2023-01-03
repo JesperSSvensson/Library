@@ -76,7 +76,7 @@ public class LibraryManager
     {
         try
         {
-            books = db.connection.Query("SELECT b.title, a.first_name, a.last_name FROM book b INNER JOIN author a ON b.author_id=a.ID");
+            books = db.connection.Query("SELECT a.first_name, a.last_name, b.title FROM Author a INNER JOIN book_to_author ba ON a.id = ba.author_id INNER JOIN Book b ON b.id = ba.book_id;");
             return true;
         }
         catch (System.Exception ex)

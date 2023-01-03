@@ -29,7 +29,7 @@ internal class Program
                         while (customerMenu == true)
                         {
                             Console.Clear();
-                            Console.WriteLine($"Welcome To Habo Library| Customer: {customerManager.activeUser.Name} \n[1] - Show All Books - Borrow a book\n[2] - Show All Books with Authors\n[3] - Your borrowed books\n[4] - Search For Book\n[5] - Information about Library");
+                            Console.WriteLine($"Welcome To Habo Library | Customer: {customerManager.activeUser.Name} \n[1] - Show All Books - Borrow a book\n[2] - Show All Books with Authors\n[3] - Your borrowed books\n[4] - Search For Book\n[5] - Information about Library");
                             ConsoleKey menuKey = Console.ReadKey().Key;
                             if (menuKey == ConsoleKey.D1)
                             {
