@@ -14,7 +14,6 @@ internal class Program
         {
             Console.WriteLine("[1] Customer [2] Admin");
             ConsoleKey choiceKey = Console.ReadKey().Key;
-
             if (choiceKey == ConsoleKey.D1)
             {
                 Console.Write("Please insert your library card (Enter ID): ");
@@ -34,7 +33,7 @@ internal class Program
                             if (menuKey == ConsoleKey.D1)
                             {
                                 library.ShowAllBooks();
-                                Font.PrintText("Do you want to borrow any book? | Enter BookID for borrow, or press enter for Exit |): ");
+                                Font.PrintText("Do you want to borrow any book? | Enter BookID for borrow, or press enter to return |): "); // Visar alla böcker och om du vill låna eller går tillbaka. 
                                 int bookToBorrow;
                                 if (Int32.TryParse(Console.ReadLine(), out bookToBorrow))
                                 {
@@ -50,11 +49,11 @@ internal class Program
                             }
                             else if (menuKey == ConsoleKey.D2)
                             {
-                                library.ShowAllBooksWithAuthors();
+                                library.ShowAllBooksWithAuthors(); // visar alla böcker med författare. 
                             }
                             else if (menuKey == ConsoleKey.D3)
                             {
-                                library.ListBorrowedBooksForCustomer(customerManager.loggedInUser.ID);
+                                library.ListBorrowedBooksForCustomer(customerManager.loggedInUser.ID); // Visar vilka böcker man har lånat och om man vill lämna tillbaka någon bok.
                                 Font.PrintText("Write Loan ID to return or press enter to return");
                                 int loanId = 0;
                                 if (Int32.TryParse(Console.ReadLine(), out loanId))
@@ -74,7 +73,7 @@ internal class Program
                             {
                                 Font.PrintText("Please enter title of book: ");
                                 string title = Console.ReadLine();
-                                if (library.FindBooksByTitle(title))
+                                if (library.FindBooksByTitle(title)) // söcker efter bokens titel. Här kan man även låna boken eller gå tillbaka till start. 
                                 {
                                     Console.WriteLine("Do You want to borrow this book? (Enter ID, or press enter for Exit)");
                                     int bookToBorrow = 0;
@@ -136,7 +135,7 @@ internal class Program
                         bool customerMenu = true;
                         while (customerMenu == true)
                         {
-                            Console.WriteLine($"Welcome To Habo Library Admin: {adminManager.activeAdmin.admin_user_name} \n[1]Show All Customers\n[2]Show All Borrowed Books\n[3]Show All Books\n[4]Show Sum Books");
+                            Console.WriteLine($"Welcome To Habo Library Admin: {adminManager.activeAdmin.AdminUserName} \n[1]Show All Customers\n[2]Show All Borrowed Books\n[3]Show All Books\n[4]Total sum of books\n[5]Exit library");
                             ConsoleKey menuKey = Console.ReadKey().Key;
                             if (menuKey == ConsoleKey.D1)
                             {
@@ -153,6 +152,10 @@ internal class Program
                             else if (menuKey == ConsoleKey.D4)
                             {
                                 library.GetSumOfBooks();
+                            }
+                            else if (menuKey == ConsoleKey.D5)
+                            {
+                                Environment.Exit(0);
                             }
                         }
                     }

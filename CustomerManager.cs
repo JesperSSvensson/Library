@@ -6,7 +6,6 @@ public class CustomerManager
     LibraryManager libraryManager = new();
     public Customer? activeUser { get; set; }
     public Customer? loggedInUser { get; set; }
-
     public bool LibraryCardInserted(string id)
     {
         try
@@ -17,7 +16,6 @@ public class CustomerManager
                 activeUser = customer;
                 return true;
             }
-
             activeUser = null;
             return false;
         }
@@ -36,7 +34,6 @@ public class CustomerManager
                 loggedInUser = activeUser;
                 return true;
             }
-
             loggedInUser = null;
             return false;
         }
@@ -46,8 +43,4 @@ public class CustomerManager
             return false;
         }
     }
-
-
-
-
 }

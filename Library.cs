@@ -32,7 +32,7 @@ public class Library
             return false;
         }
     }
- public bool ShowAllBooksWithAuthors()
+    public bool ShowAllBooksWithAuthors()
     {
         try
         {
@@ -42,7 +42,7 @@ public class Library
                 Font.PrintText("All Books With Authors");
                 foreach (dynamic b in books)
                 {
-                    Console.WriteLine("Book Title: " + b.title + " | Author: " + b.first_name + " " + b.last_name + "\n");
+                    Console.WriteLine("Book Title: " + b.title + " | Author: " + b.FirstName + " " + b.LastName + "\n");
                 }
                 Console.ReadKey();
                 return true;
@@ -62,12 +62,12 @@ public class Library
             int currentStock;
             if (libraryManager.GetBookStock(bookId, out currentStock))
             {
-                if (currentStock > 0)
+                if (currentStock > 0) // om lagret är större än noll så går den vidare. 
                 {
-                    int newStock = currentStock - 1;
+                    int newStock = currentStock - 1; // här uppdateras stock med -1 om det finns någon book på lagret.
                     if (libraryManager.SetBookStock(newStock, bookId))
                     {
-                        if (libraryManager.RegisterBorrowedBook(bookId, customerId))
+                        if (libraryManager.RegisterBorrowedBook(bookId, customerId)) // Här går den vidare till queryn. Går den igenom så retunerar den sant. Du har nu lånat en bok. 
                         {
                             return true;
                         }
@@ -75,7 +75,7 @@ public class Library
                 }
                 else
                 {
-                    Font.PrintErrorHeader("Book out of stock");
+                    Font.PrintErrorHeader("Book out of stock"); // skulle något av oavstående inte gå igenom så finns inte boken på lagret. 
                     Console.ReadLine();
                 }
             }
@@ -168,7 +168,7 @@ public class Library
         try
         {
             IEnumerable<BorrowedBooks> borrowedBooks;
-            if (libraryManager.GetAllBorrowedBooks(out borrowedBooks)) // out betyder att du inte behöver skapa en ny variabel i metoden som anropas. Vi skickar med denna variablen till andra metoden. Alla förändringar som görs på variabeln i den andra klassen kommer även följa med. 
+            if (libraryManager.GetAllBorrowedBooks(out borrowedBooks))
             {
                 Font.PrintHeader("All borrowed books");
                 foreach (BorrowedBooks bB in borrowedBooks)
@@ -199,7 +199,7 @@ public class Library
                 {
                     Console.WriteLine(b.ToString());
                 }
-                if (books?.Any() == false)
+                if (books?.Any() == false) // här kollar vi om det finns några element när vi söker. Om det inte gör det så får vi ett felmeddelande. Den returnerar false.
                 {
                     return false;
                 }
@@ -223,7 +223,7 @@ public class Library
             {
                 {
                     Console.Clear();
-                    Font.PrintText("Total Numbers of Books In Library: " + books);
+                    Font.PrintText("Total Numbers of Books In Library: " + books + " | Press enter to continue");
                     Console.ReadKey();
                 }
                 return true;
@@ -258,4 +258,4 @@ public class Library
             return false;
         }
     }
-}    
+}

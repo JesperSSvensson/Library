@@ -4,11 +4,8 @@ public class AdminManager
 {
     DBConnections DB = new();
     LibraryManager libraryManager = new();
-    public Admin? activeAdmin {get; set;}
+    public Admin? activeAdmin { get; set; }
     public Admin? loggedInAdmin { get; set; }
-
-
-    
     public bool LibraryAdminCardInserted(string _id)
     {
         try
@@ -19,7 +16,6 @@ public class AdminManager
                 activeAdmin = admin;
                 return true;
             }
-
             activeAdmin = null;
             return false;
         }
@@ -30,26 +26,21 @@ public class AdminManager
         }
     }
     public bool PinEntered(string Pin)
+    {
+        try
         {
-            try
+            if (libraryManager.CheckPinForAdmin(activeAdmin.ID, Pin))
             {
-                if(libraryManager.CheckPinForAdmin(activeAdmin.ID, Pin))
-                {
-                    loggedInAdmin = activeAdmin;
-                    return true;
-                }
-
-                loggedInAdmin = null;
-                return false;
+                loggedInAdmin = activeAdmin;
+                return true;
             }
-            catch (System.Exception)
-            {
-                loggedInAdmin = null;
-                return false;
-            }
+            loggedInAdmin = null;
+            return false;
         }
-    
-    
-
-
+        catch (System.Exception)
+        {
+            loggedInAdmin = null;
+            return false;
+        }
+    }
 }

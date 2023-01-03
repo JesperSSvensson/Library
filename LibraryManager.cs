@@ -22,7 +22,7 @@ public class LibraryManager
     {
         try
         {
-            admin = db.connection.QuerySingle<Admin>("SELECT ID, admin_user_name FROM admin WHERE ID=" + adminId);
+            admin = db.connection.QuerySingle<Admin>("SELECT ID, admin_user_name AS AdminUserName FROM admin WHERE ID=" + adminId);
             return true;
         }
         catch (System.Exception ex)
@@ -76,7 +76,7 @@ public class LibraryManager
     {
         try
         {
-            books = db.connection.Query("SELECT a.first_name, a.last_name, b.title FROM Author a INNER JOIN book_to_author ba ON a.id = ba.author_id INNER JOIN Book b ON b.id = ba.book_id;");
+            books = db.connection.Query("SELECT a.first_name AS FirstName, a.last_name AS LastName, b.title FROM Author a INNER JOIN book_to_author ba ON a.id = ba.author_id INNER JOIN Book b ON b.id = ba.book_id;");
             return true;
         }
         catch (System.Exception ex)
@@ -96,7 +96,7 @@ public class LibraryManager
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine("LibraryManager: Cannot get borrowed books for customer_id: " + customerId + " : " + ex.Message);
+            Console.WriteLine("LibraryManager: Cannot get borrowed books for customerId: " + customerId + " : " + ex.Message);
             borrowedBooks = null;
             return false;
         }
@@ -110,7 +110,7 @@ public class LibraryManager
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine("LibraryManager: Cannot get book_id from loan id " + loanId + " : " + ex.Message);
+            Console.WriteLine("LibraryManager: Cannot get bookId from loan id " + loanId + " : " + ex.Message);
             bookId = 0;
             return false;
         }
@@ -197,18 +197,18 @@ public class LibraryManager
         }
     }
     public bool GetBookByTitle(string title, out IEnumerable<Book> books)
-    {  
-            try
-            {
-                books = db.connection.Query<Book>("SELECT * FROM book b WHERE b.title='" + title + "'");
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                Font.PrintErrorHeader("LibraryManager: Cannot get any books with title: " + title + " : " + ex.Message);
-                books = null;
-                return false;
-            }
+    {
+        try
+        {
+            books = db.connection.Query<Book>("SELECT * FROM book b WHERE b.title='" + title + "'");
+            return true;
+        }
+        catch (System.Exception ex)
+        {
+            Font.PrintErrorHeader("LibraryManager: Cannot get any books with title: " + title + " : " + ex.Message);
+            books = null;
+            return false;
+        }
     }
     public bool ShowBookStock(out int books)
     {
