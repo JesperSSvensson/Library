@@ -15,6 +15,6 @@ public class BorrowedBooks
     public override string ToString()
     {
 
-        return "\nBorrowedBookID: " + ID + " |DateOfLoan: " + date_of_loan + "  +  |bookID: " + Book_id + " |CustomerID: " + Customer_id;
+        return "\nBorrowedBook ID: " + ID + " |Date of loan: " + date_of_loan + " |book ID: " + Book_id + " |Customer ID: " + Customer_id;
     }
 }
